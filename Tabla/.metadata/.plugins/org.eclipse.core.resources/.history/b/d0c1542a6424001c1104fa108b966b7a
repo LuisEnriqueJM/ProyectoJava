@@ -1,0 +1,73 @@
+package gui;
+
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+
+// ======== añadimos el siguiente codigo ======== 
+import javax.swing.table.DefaultTableModel;
+// ======== añadimos el siguiente codigo ======== 
+
+
+
+public class frmTabla extends JDialog {
+
+	private final JPanel contentPanel = new JPanel();
+	private JTable tblTabla;
+    // ======== añadimos el siguiente codigo ======== 
+    private DefaultTableModel modelo;
+    // ======== añadimos el siguiente codigo ======== 
+	
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		try {
+			frmTabla dialog = new frmTabla();
+			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Create the dialog.
+	 */
+	public frmTabla() {
+		setBounds(100, 100, 450, 300);
+		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		contentPanel.setLayout(null);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 10, 416, 243);
+		contentPanel.add(scrollPane);
+		
+		tblTabla = new JTable();
+		tblTabla.setFillsViewportHeight(true);
+		scrollPane.setViewportView(tblTabla);
+		
+        // ======== añadimos el siguiente codigo ======== 
+        modelo = new DefaultTableModel();
+        modelo.addColumn("código");
+        modelo.addColumn("nombre");
+        modelo.addColumn("nota 1");
+        modelo.addColumn("nota 2");
+        modelo.addColumn("promedio");
+        tblTabla.setModel(modelo);
+
+        modelo.setRowCount(0);
+        Object[] fila = { 123, "Ana", 19, 15, 17.0 };
+        modelo.addRow(fila);
+        // ======== añadimos el siguiente codigo ======== 		
+
+	}
+}
